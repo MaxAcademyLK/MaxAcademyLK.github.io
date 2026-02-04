@@ -1,1 +1,1 @@
-# MaxAcademyLK.github.io
+# MaxAcademy.lk
