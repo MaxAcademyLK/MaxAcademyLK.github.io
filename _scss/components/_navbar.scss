@@ -34,8 +34,10 @@
         }
     }
 
-    @include media-breakpoint-up(lg) {
-        // Base styling for the navbar - screen sizes greater than the large breakpoint
+    .navbar-toggler {
+        background-color: rgba(255, 255, 255, 0.25);
+    }
+
         box-shadow: none;
         background-color: transparent;
 
@@ -46,6 +48,8 @@
                 color: $white;
             }
         }
+    @include media-breakpoint-up(lg) {
+        // Base styling for the navbar - screen sizes greater than the large breakpoint
 
         .navbar-nav {
             .nav-item {
@@ -66,6 +70,7 @@
             }
         }
 
+    } // End Media Query
         // Navbar styling applied when the page is scrolled
         &.navbar-shrink {
             box-shadow: $box-shadow;
@@ -91,5 +96,4 @@
                 }
             }
         }
-    } // End Media Query
 }

@@ -9,16 +9,22 @@
 
 window.addEventListener('DOMContentLoaded', event => {
 
+    const navbarToggler = document.body.querySelector('.navbar-toggler');
+
     // Navbar shrink function
-    var navbarShrink = function () {
+    var navbarShrink = function (force) {
         const navbarCollapsible = document.body.querySelector('#mainNav');
+        const navbarExpanded = navbarToggler.classList.contains('navbar-expanded');
         if (!navbarCollapsible) {
             return;
         }
-        if (window.scrollY === 0) {
+        if (window.scrollY === 0 && !navbarExpanded) {
             navbarCollapsible.classList.remove('navbar-shrink')
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
+        }
+        if(force === true) {
+            navbarCollapsible.classList.add('navbar-shrink');
         }
 
     };
@@ -39,7 +45,15 @@ window.addEventListener('DOMContentLoaded', event => {
     };
 
     // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
+    navbarToggler.addEventListener('click',  function(event) {
+        const isCollapesed = navbarToggler.classList.contains('collapsed');
+        if(!isCollapesed) {
+            navbarToggler.classList.add('navbar-expanded');
+        } else {
+            navbarToggler.classList.remove('navbar-expanded');            
+        }
+        navbarShrink(!isCollapesed);
+    }, true);
     const responsiveNavItems = [].slice.call(
         document.querySelectorAll('#navbarResponsive .nav-link')
     );
